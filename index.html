@@ -98,7 +98,7 @@
 <script>
 // The address of the sign-in page. While it is empty the page offers "Ask for
 // early access"; paste the address here and the Google button takes its place.
-var SIGNIN_URL = "";
+var SIGNIN_URL = "https://signin.lessonfollowup.com/start";
 if (SIGNIN_URL) {
   document.querySelectorAll("[data-signin]").forEach(function (el) { el.hidden = false; if (el.tagName === "A") el.href = SIGNIN_URL; });
   document.querySelectorAll("[data-early]").forEach(function (el) { el.hidden = true; });
