@@ -163,43 +163,84 @@ section[id]{scroll-margin-top:64px}
 .steps.three{grid-template-columns:repeat(3,1fr)}
 @media(max-width:760px){.steps.three{grid-template-columns:1fr}}
 
-/* ---------- big top switch (same on every page, independent of the page theme) ---------- */
-.topswitch{display:grid;grid-template-columns:1fr 1fr;position:relative;z-index:30}
-.topswitch a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:26px 16px;text-align:center;color:inherit;border-bottom:3px solid transparent;transition:filter .15s}
-.topswitch a:hover{text-decoration:none;filter:brightness(1.08)}
-.topswitch b{font-size:clamp(20px,3.4vw,34px);line-height:1.1;letter-spacing:-.02em}
-.topswitch span{font-size:clamp(12px,1.6vw,15px);opacity:.8}
-.topswitch .ts-tool{background:#0A0F1E;color:#EEF2FF}
-.topswitch .ts-tool b{font-family:"Space Grotesk",Inter,sans-serif}
-.topswitch .ts-lessons{background:#FFFDF5;color:#1B2A47}
-.topswitch .ts-lessons b{font-family:Georgia,"Times New Roman",serif}
-.topswitch a[aria-current="page"]{border-bottom-color:#3DE0A5}
-.topswitch .ts-lessons[aria-current="page"]{border-bottom-color:#FFD966}
+/* ====== additions (appended to the base style.css by build.js) ====== */
+
+/* nav scrolls away; the big switch stays */
+.nav{position:static}
+section[id]{scroll-margin-top:90px}
+
+/* ---------- big top switch: constant height, sticky, same on every page ---------- */
+.topswitch{display:grid;grid-template-columns:1fr 1fr;position:sticky;top:0;z-index:40;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+.topswitch a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:18px 14px;text-align:center;color:inherit;border-bottom:4px solid transparent;transition:filter .15s}
+.topswitch a:hover{text-decoration:none;filter:brightness(1.06)}
+.topswitch b{font-size:clamp(20px,3vw,30px);line-height:1.1;letter-spacing:-.02em;font-family:Georgia,"Times New Roman",serif}
+.topswitch span{font-size:clamp(12px,1.5vw,14px);opacity:.8;line-height:1.25}
+.topswitch .ts-tool{background:#1F3864;color:#fff}
+.topswitch .ts-lessons{background:#FFD966;color:#1F3864}
+.topswitch a[aria-current="page"]{border-bottom-color:#B0512B}
 .topswitch a:not([aria-current="page"]) b::after{content:" \203A"}
 .topswitch a[aria-current="page"] span::before{content:"You are here \00B7 "}
-@media (max-width:520px){.topswitch a{padding:18px 8px}}
+@media (max-width:520px){.topswitch a{padding:12px 8px}.topswitch span{display:none}}
+
+/* ---------- tool page wears the same brand (cream, navy, gold) ---------- */
+.is-tool .h-hero span{font-style:italic;background:linear-gradient(transparent 62%,var(--hl) 62%,var(--hl) 92%,transparent 92%);padding:0 .05em}
+.is-tool .doc,.is-tool .mail{box-shadow:rgba(31,56,100,.18) 4px 10px 34px;border:1px solid var(--line)}
+.is-tool .step i{color:var(--accent)}
+.is-tool .chip{background:#EAF0E4;color:#3D6B1F;border-color:#5A7247}
+
+/* ---------- announcement line ---------- */
+.banner{display:block;text-align:center;background:var(--band);border-bottom:1px solid var(--line);padding:9px 16px;font-size:14px;color:var(--ink)}
+.banner b{background:var(--hl);padding:1px 8px;border-radius:3px;margin-right:6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.banner:hover{text-decoration:none;background:#F0E8C8}
+
+/* ---------- hero covers and cards are portrait page previews ---------- */
+.stage img{aspect-ratio:3/4;object-fit:cover;object-position:top;border:1px solid var(--line)}
+.stage img.mid{margin-bottom:30px}
+.grid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.card .im{aspect-ratio:3/4;position:relative;border-bottom:1px solid var(--line)}
+.card .im img{object-position:top}
+.badge{position:absolute;top:10px;left:10px;background:var(--hl);color:var(--dark);font:700 11px/1 var(--bf);letter-spacing:.08em;text-transform:uppercase;padding:6px 9px;border-radius:3px}
+
+/* ---------- about ---------- */
+.about{max-width:38em;margin:0 auto;text-align:left}
+.about p{font-size:19px;line-height:1.55;color:var(--ink)}
+.about p+p{margin-top:14px;color:var(--muted)}
+.etsyline{margin-top:34px;font-size:15px;color:var(--muted)}
 
 /* ---------- lesson page ---------- */
 .crumb{padding:26px 0 0;font-size:15px}
-.lesson{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:start;padding:36px 0 96px}
-.lesson .cover{aspect-ratio:1;border-radius:8px;overflow:hidden;background:var(--band);box-shadow:rgba(31,56,100,.28) 4px 8px 30px}
-.lesson .cover img{width:100%;height:100%;object-fit:cover}
-.lesson .cover.text{display:flex;align-items:center;justify-content:center;padding:32px;background:var(--dark);color:var(--on-dark);box-shadow:none}
-.lesson .cover.text b{font:700 clamp(28px,4vw,44px)/1.1 var(--hf);letter-spacing:var(--track)}
-.lesson h1{font-size:clamp(32px,5vw,54px);line-height:1.06;margin-top:6px}
+.lesson{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,5vw,64px);align-items:start;padding:36px 0 56px}
+.lesson .cover{border-radius:6px;overflow:hidden;background:var(--band);border:1px solid var(--line);box-shadow:rgba(31,56,100,.22) 4px 8px 30px}
+.lesson .cover img{width:100%;height:auto}
+.lesson h1{font-size:clamp(32px,4.6vw,52px);line-height:1.06;margin-top:6px}
 .lesson .lead{font-size:clamp(18px,2vw,21px);line-height:1.45;color:var(--muted);margin-top:18px}
 .lesson .facts-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
 .lesson .tag{background:var(--band);border:1px solid var(--line);border-radius:999px;font:600 13px/1 var(--bf);padding:8px 14px}
-.lesson .row{justify-content:flex-start;margin-top:30px}
-.lesson .note{margin-top:18px;font-size:14px;color:var(--muted)}
-.lesson .coffee{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-size:14px}
-@media (max-width:760px){.lesson{grid-template-columns:1fr;padding-bottom:64px}}
+.lesson .row{justify-content:flex-start;margin-top:28px}
+.lesson .btn small{font-weight:500;opacity:.85;margin-left:6px}
+.lesson .more small{font-weight:400;color:var(--muted)}
+.lesson .note{margin-top:18px;font-size:14px;color:var(--muted);line-height:1.5}
+.lesson .coffee{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);font-size:14px}
+.facts-dl{display:grid;grid-template-columns:auto 1fr;gap:8px 20px;margin:26px 0 0;font-size:16px}
+.facts-dl dt{font:700 12px/1.9 var(--bf);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.facts-dl dd{margin:0}
+.inside{padding:0 0 56px}
+.inside h2{font-size:clamp(24px,3vw,32px)}
+.inside ul{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.inside li{display:grid;grid-template-columns:minmax(110px,170px) 1fr;gap:6px 22px;padding:14px 0;border-bottom:1px solid var(--line)}
+.inside li b{font:700 12px/1.8 var(--bf);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.inside li span{color:var(--ink)}
+.heads-up{margin-top:18px;background:#FBF1D9;border-left:4px solid #A8791C;padding:12px 16px;font-size:15px}
+.related{padding:12px 0 88px;border-top:1px solid var(--line)}
+.related h2{font-size:clamp(22px,2.6vw,28px);padding-top:34px}
+.related .grid{margin-top:22px}
+@media (max-width:760px){.lesson{grid-template-columns:1fr;padding-bottom:36px}.lesson .cover{max-width:360px}.inside li{grid-template-columns:1fr}}
 
-/* ---------- free grid with three cards, bundle page ---------- */
-.free{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+/* ---------- bundle page ---------- */
 .pack{padding:0 0 44px;border-top:1px solid var(--line);margin-top:8px}
 .pack h2{font-size:clamp(24px,3vw,32px);padding-top:34px}
 .pack h2 small{font:400 17px var(--bf);color:var(--muted);margin-left:8px}
+.pack .packnote{margin-top:8px;color:var(--muted);font-size:16px;max-width:42em}
 .dls{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .dl{display:inline-flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 16px;font-weight:600;color:var(--ink)}
 .dl:hover{text-decoration:none;border-color:var(--accent)}
@@ -210,3 +251,6 @@ section[id]{scroll-margin-top:64px}
 .tr span{font-size:12px;color:var(--muted)}
 .tr audio{width:100%;min-width:0;height:34px}
 @media (max-width:860px){.tr{grid-template-columns:1fr 1fr}.tr b{grid-column:1/-1}}
+
+/* ---------- 404 ---------- */
+.nf{text-align:center;padding:96px 0}
